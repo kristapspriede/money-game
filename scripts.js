@@ -13,16 +13,6 @@ class Player {
         let salaryWithMultiplier = this.job.salary;
         this.balance += salaryWithMultiplier;
     }
-
-    displaySkills() {
-        const skillsList = document.getElementById('skillsList');
-        this.skills.forEach(skill => {
-            const listItem = document.createElement('li');
-            listItem.classList.add('job-list-item');
-            listItem.innerText = skill.name;
-            skillsList.appendChild(listItem);
-        });
-    }
 }
 
 class Job {
@@ -62,7 +52,15 @@ class GameManager {
     initializeUI() {
         document.getElementById('jobTitle').innerText = this.player.job.title;
         document.getElementById('balance').innerText = this.player.balance;
-        this.player.displaySkills();
+        const skillsList = document.getElementById('skillsList');
+        skillsList.innerHTML = ''; // Clear the list
+
+        this.player.skills.forEach(skill => {
+            const skillItem = document.createElement('li');
+            skillItem.classList.add('list-group-item');
+            skillItem.textContent = skill.name;
+            skillsList.appendChild(skillItem);
+        });
     }
 
     advanceDay() {
@@ -92,6 +90,15 @@ class GameManager {
     updateUI() {
         document.getElementById('balance').innerText = this.player.balance;
         document.getElementById('jobTitle').innerText = this.player.job.title;
+        const skillsList = document.getElementById('skillsList');
+        skillsList.innerHTML = ''; // Clear the list
+
+        this.player.skills.forEach(skill => {
+            const skillItem = document.createElement('li');
+            skillItem.classList.add('list-group-item');
+            skillItem.textContent = skill.name;
+            skillsList.appendChild(skillItem);
+        });
     }
 }
 
